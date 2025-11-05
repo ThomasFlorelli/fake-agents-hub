@@ -1,0 +1,30 @@
+#V2
+select * from agents;
+remove table agents;
+remove table agent;
+remove table agent_type;
+remove table agent;
+select * from agent
+select * from agent_type
+exit
+select * from agents
+select * from agent
+select * from agent fetch agent_type
+select id, name from agent fetch agent_type
+select id, name, agentType from agent fetch agent_type
+select id, name, agentType->replies from agent fetch agent_type
+select id, name, agentType.replies from agent fetch agent_type
+select * from agent_type
+CREATE agent_type:client_relations_2 SET\n    replies = {\n        "Bonjour": ["Bonjour à vous aussi !", "Salut, comment puis-je vous aider aujourd'hui ?"],\n        "Merci": ["Avec plaisir !", "Je vous en prie, c’est mon rôle 🙂"],\n        "Au revoir": ["Bonne journée à vous !", "À bientôt !"],\n        "Pouvez-vous m'aider ?": ["Bien sûr, dites-moi en quoi je peux vous assister."]\n    };
+select * from agent_type
+select * from agent_types
+select * from agent_type
+select * from agent
+select * from agent fetch agent_type
+select *, agentType.replies from agent
+SELECT *, messages.role, messages.body, messages.timestamp FROM conversation
+select * from message
+SELECT *, messages.role, messages.body, messages.timestamp FROM conversation fetch messages
+SELECT *, messages.body FROM conversation 
+select * from message
+SELECT *, messages.body, agent.name FROM conversation 

@@ -1,0 +1,40 @@
+services:
+  surrealdb:
+    image: surrealdb/surrealdb:latest
+    container_name: fake-agents-hub-db
+    ports:
+      - "8000:8000"
+    command: start --log trace --user root --pass root memory
+    networks:
+      - app-network
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fake-agents-hub-api
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - HOST=0.0.0.0
+      - SURREAL_URL=http://surrealdb:8000
+      - SURREAL_USER=root
+      - SURREAL_PASS=root
+    depends_on:
+      - surrealdb
+    networks:
+      - app-network
+    develop:
+      watch:
+        - action: rebuild
+          path: ./src
+          target: /app/src
+        - action: rebuild
+          path: ./package.json
+          target: /app/package.json
+
+networks:
+  app-network:
+    driver: bridge
