@@ -5,13 +5,11 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
     "build": "tsc",
-    "start": "node dist/index.js",
-    "test:up": "scripts/bootstrap.sh",
+    "start": "scripts/bootstrap.sh",
+    "stop": "docker-compose down",
     "test:watch": "vitest watch",
-    "test:down": "docker-compose down",
-    "test": "npm run test:up && vitest run && npm run test:down"
+    "test": "npm run start && vitest run && npm run stop"
   },
   "repository": {
     "type": "git",
